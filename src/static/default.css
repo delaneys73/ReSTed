@@ -3,8 +3,43 @@ body {
 	font-size: 14px
 }
 
-#files {
+.filelist {
 	list-style: none;
+	margin:0;
+}
+
+.filelist li {
+	height: 50px;
+}
+
+.filelist li:hover {
+	background-color: #eee;
+}
+
+.pageTitle {
+	border-bottom: 4px solid #FF0000;	
+}
+
+.filelist a {
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		padding-left: 50px;
+		padding-top: 12px;
+		height:50px;
+		display: block;
+		font-size: 18px;	
+}
+
+#files a {
+		background-image: url(images/document.png);
+}
+
+#files a.image {
+		background-image: url(images/image-alt.png);
+}
+
+#dirs a {
+		background-image: url(images/folder-alt2.png);
 }
 
 li a {
@@ -12,17 +47,65 @@ li a {
 }
 
 .altfilerow {
-	background-color: #aaccdd;
-}
-
-.altfilerow {
-	background-color: #afed12;
+	background-color: #D6EBFF;
 }
 
 .message {
-	border: 1px double #143314;
+	border: 4px double #143314;
 	width: 200px;
-	background-color: #CCFFCC;
 	padding: 5px;
 	margin-bottom: 20px;
+	font-size: 10px;
+	padding-left : 50px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-image: url(images/info.png);
+	min-height: 50px;	
+}
+
+.message h3 {
+	margin:0;
+	text-decoration: underline;
+	color: #143314;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#editor {
+	height:90%;
+}
+
+.button {
+	border: 1px solid #ccc;
+	background-color: #eee;
+	margin-right: 3px;
+	margin-bottom: 10px;
+	height: 50px;
+	padding-left : 50px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
+.save {
+	background-image: url(images/save.png);
+}
+
+.back {
+	background-image: url(images/back.png);
+}
+
+.shutdown {
+	background-image: url(images/shutdown.png);
+	padding-top:12px;
+	border: 1px solid #ccc;
+	background-color: #eee;
+	margin: 0px;
+	height: 40px;
+	padding-left : 50px;
+	padding-top: 12px;
+	color: #000;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	display:block;	
+	margin-top:20px;
 }
