@@ -1,0 +1,34 @@
+ReSTed 
+------
+Local WYSIWYG editor for Restructured Text (RST)
+
+Installation
+============
+
+Requirements
+++++++++++++
+Python 2.6+, Web Browser
+
+This script requires the following python packages to be installed, 
+and configured to be on the PYTHONPATH.
+
+CherryPy 3.2.0
+Cheetah 2.4.4
+docutils 0.7
+
+
+Usage
+=====
+Run ReSTed/__init__.py <path to rst files>
+
+
+TODO
+====
+* Wrapper script for editor
+* Automatic browser launching
+* Tidy up of code (only proto code)
+* Slick installation script for Unix/Mac/Windows
+* Integrate CKFinder for file browsing
+* Add image upload facility
+* Add file management facilities
+* Integrate with source control systems , show status / history (maybe)

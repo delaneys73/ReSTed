@@ -1,0 +1,28 @@
+body {
+	font-family: verdana,arial,helvetica;
+	font-size: 14px
+}
+
+#files {
+	list-style: none;
+}
+
+li a {
+	color:#000;
+}
+
+.altfilerow {
+	background-color: #aaccdd;
+}
+
+.altfilerow {
+	background-color: #afed12;
+}
+
+.message {
+	border: 1px double #143314;
+	width: 200px;
+	background-color: #CCFFCC;
+	padding: 5px;
+	margin-bottom: 20px;
+}

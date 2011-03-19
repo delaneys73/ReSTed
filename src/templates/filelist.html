@@ -1,0 +1,19 @@
+
+<ul id="dirs">
+#for $dir in $directories
+
+#end for
+</ul>
+<ul id="files">
+#set $x = 0
+
+#for $file in $files
+	#if $x%2==0
+		#set $alt = "altfilerow"
+	#else
+		#set $alt = "filerow"	
+	#end if
+	<li class="$alt"><a href="/edit/$file">$file</a></li>
+	#set $x = $x +1
+#end for
+</ul>
