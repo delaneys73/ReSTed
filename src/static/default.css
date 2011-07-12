@@ -52,7 +52,7 @@ li a {
 
 .message {
 	border: 4px double #143314;
-	width: 200px;
+	width: 95%;
 	padding: 5px;
 	margin-bottom: 20px;
 	font-size: 10px;
@@ -94,6 +94,33 @@ li a {
 	background-image: url(images/back.png);
 }
 
+.choice {
+	font-size: 12px;	
+	text-align: center;
+	vertical-align: middle;
+	width: 50px;
+}
+.choice input {
+	width: 16px;
+	height: 16px;	
+}
+
+.choice label {
+	margin : 0;
+	padding: 0;
+}
+
+
+.pageTitle .button {
+	float: right;	
+}
+
+div.pageTitle {
+	height: 50px;
+	display: block;
+	font-size: 28px;	
+}
+	 
 .shutdown {
 	background-image: url(images/shutdown.png);
 	padding-top:12px;
@@ -108,4 +135,20 @@ li a {
 	background-position: 0 0;
 	display:block;	
 	margin-top:20px;
+}
+
+.frame .rst {
+	height : 90%;
+	width: 47%;
+	font-family: courier new;
+	font-size: 12px;
+	float:left;
+	border: 1px solid #000;
+}
+
+.frame #preview {
+	border: 1px solid #000;
+	height : 90%;
+	width: 47%;
+	float:right;
 }

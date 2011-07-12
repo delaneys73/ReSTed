@@ -1,0 +1,68 @@
+<script type="text/javascript">
+var timer = 0;
+
+function showPreview(rst)
+{
+	jQuery("#previewrst").val(rst);
+	jQuery("#previewform").submit();
+}
+
+function debug(obj)
+{
+	var rtn = "";
+	for (var x in obj)
+	{
+		var val = obj[x]+"";
+		if (val.substr(0,4)=="func")
+		{
+			val = "F()";
+		}
+		rtn +=x+"='"+val+"'\n";
+	}
+
+	return rtn;
+}
+
+jQuery(document).ready(function(){
+	
+	showPreview(jQuery("#rst").val());
+
+
+	
+	jQuery("#rst").keydown(function(e){
+		var rst = jQuery("#rst");
+		alert(debug(rst));
+		if (e.keyCode==9)
+		{
+			e.preventDefault();
+			
+		}
+		var currrst = rst.val();
+		var lastrst = jQuery("#previewrst").val(); 
+		if (currrst!=lastrst)
+		{
+			clearTimeout(timer);
+			timer = setTimeout(function()
+			{
+				showPreview(currrst);
+			},1000);
+		}
+	});
+});
+</script>
+<div id="editor">
+	<div class="frame">
+	<form id="form" method="post" action="/save">
+		<textarea id="rst" name="rst" class="rst">$rst</textarea>
+		<iframe id="preview" name="preview"></iframe>
+		<input type="hidden" id="file" name="file" value="$file"/>
+		<input type="hidden" name="source" value="rst"/>
+		<input type="hidden" name="html" value=""/>
+	</form>
+	<form id="previewform" method="post" target="preview" action="/preview">
+		<input id="previewrst" type="hidden" name="rst" value="$rst" />
+		<input type="hidden" name="file" value="$file" />
+	</form>
+	</div>
+	<div class="frame" id="preview"></div>
+</div>
