@@ -1,13 +1,9 @@
-<h1 class="pageTitle">ReSTed - $file</h1>
-<script type="text/javascript" src="/include/ckeditor/ckeditor.js"></script>
-<form id="form" method="post" action="/save">
-<textarea class="ckeditor" name="html">
-$html
-</textarea>
-<input type="hidden" name="file" value="$file"/>
-
-</form>
-<input id="back" type="submit" value="Back" class="button back"/><input id="save" type="submit" value="Save" class="button save"/>
+<div class="pageTitle">
+<b>ReSTed - $file</b>
+<input id="back" type="submit" value="Back" class="button back"/>
+<input id="save" type="submit" value="Save" class="button save"/>
+<input id="editorgui" name="editorgui" type="button" class="button" value="Toggle">
+</div>
 #if $message
 <div class="message">
 <h3>Information</h3>
@@ -20,6 +16,9 @@ jQuery(document).ready(function(){
 });
 </script>
 #end if
+
+#include $editor
+
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	jQuery("#back").click(function(){
@@ -28,6 +27,47 @@ jQuery(document).ready(function(){
 
 	jQuery("#save").click(function(){
 		jQuery("#form").submit();
+	});
+
+	jQuery("#editorgui").click(function(){
+		var cookies = document.cookie;
+		var cookieKey = "rested.editor";
+		var idx = cookies.indexOf(cookieKey);
+		var pref = "wysiwyg";
+		if (idx!=-1)
+		{
+			var sidx = cookies.indexOf(",",idx);
+			if (sidx==-1) //Only one cookie
+			{
+				pref = cookies.substring(idx+1+cookieKey.length);
+			}
+			else
+			{
+				pref = cookies.substring(idx+1+cookieKey.length,sidx);
+			}
+		}
+
+		alert(pref);
+		
+		if (pref=="wysiwyg")
+		{
+			pref="raw";	
+		}
+		else
+		{
+			pref = "wysiwyg";
+		}
+
+		var now = new Date();
+		
+		var date = new Date(now.getTime()+(365*24*60*60*1000) );
+		
+		cookieStr = cookieKey+"="+pref+"; expires="+date+"; path=/";
+
+		alert(cookieStr);
+		document.cookie = cookieStr;
+		var file = jQuery("#file").val();
+		window.location.replace("/edit/"+file);
 	});
 });
 
