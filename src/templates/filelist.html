@@ -11,7 +11,7 @@
 	#else
 		#set $alt = "filerow"	
 	#end if
-	<li class="$alt"><a href="/browse/$subdir$dir">$dir</a></li>
+	<li class="$alt"><a href="/browse/?dir=$subdir$dir">$dir</a></li>
 	#set $x = $x +1
 #end for
 </ul>
@@ -22,7 +22,7 @@
 	#else
 		#set $alt = "filerow"	
 	#end if
-	<li class="$alt"><a href="/edit/$subdir$file">$file</a></li>
+	<li class="$alt"><a href="/edit/?file=$subdir$file">$file</a></li>
 	#set $x = $x +1
 #end for
 #for $img in $images
@@ -31,7 +31,7 @@
 	#else
 		#set $alt = "filerow"	
 	#end if
-	<li class="$alt"><a class="image" href="/preview/$subdir$img">$img</a></li>
+	<li class="$alt"><a class="image" href="/show/?file=$subdir$img">$img</a></li>
 	#set $x = $x +1
 #end for
 </ul>

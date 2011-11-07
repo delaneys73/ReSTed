@@ -46,8 +46,6 @@ jQuery(document).ready(function(){
 				pref = cookies.substring(idx+1+cookieKey.length,sidx);
 			}
 		}
-
-		alert(pref);
 		
 		if (pref=="wysiwyg")
 		{
@@ -64,10 +62,9 @@ jQuery(document).ready(function(){
 		
 		cookieStr = cookieKey+"="+pref+"; expires="+date+"; path=/";
 
-		alert(cookieStr);
 		document.cookie = cookieStr;
 		var file = jQuery("#file").val();
-		window.location.replace("/edit/"+file);
+		window.location.replace("/edit/?file="+file);
 	});
 });
 

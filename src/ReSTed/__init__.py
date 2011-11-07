@@ -17,7 +17,7 @@ def setup(baseDir,webRoot):
               "baseDir":baseDir,
               "templateDir": webRoot +"templates/",
               "templateExt" : "html",
-              "usePandoc" : True
+              "usePandoc" : False
              }
     
     ReSTed.mainTemplate = "%(templateDir)smain.%(templateExt)s" % ReSTed.config
@@ -47,7 +47,7 @@ class ReSTed:
     index.exposed = True
 
     def browse(self,dir):
-        return self._browse(ReSTed.config["baseDir"]+"/"+dir,dir+"/",True)
+        return self._browse(os.path.join(ReSTed.config["baseDir"],dir),dir,True)
     browse.exposed = True
 
     def _browse(self,dir,subdir,showBack):
@@ -56,13 +56,19 @@ class ReSTed:
         tpl.files = glob.glob1(dir, "*.rst")
         tpl.subdir = subdir
         tpl.images = glob.glob1(dir, "*.png") + glob.glob1(dir, "*.jpg")
-        dirs = [ name for name in os.listdir(dir) if os.path.isdir(os.path.join(dir, name)) ]
+        dirs = []
+       
+        for d in os.listdir(dir):
+            if (os.path.isdir(os.path.join(dir,d))):
+                dirs.append(d+'/')
+   
         tpl.directories = dirs
         return str(tpl)
     
     def edit(self,file):
         return self._edit(file,"")
-
+    
+    
     def _getEditor(self):
         cookieEditor = "wysiwyg"
         if cherrypy.request.cookie.has_key("rested.editor"):
@@ -81,7 +87,7 @@ class ReSTed:
         tpl= getTemplate("edit",file)
         tpl.message = message
         tpl.file = file
-        fileName = "%s/%s" % (ReSTed.config["baseDir"],file)
+        fileName = os.path.join(ReSTed.config["baseDir"],file)
         fp = open(fileName, 'r')
         rst = fp.read()
         tpl.rst = rst
@@ -110,7 +116,7 @@ class ReSTed:
         else:
             rstsrc = rst
             
-        fileName = ReSTed.config["baseDir"]+"/"+file
+        fileName = os.path.join(ReSTed.config["baseDir"],file)
         fp = open(fileName,'w')
         fp.write(rstsrc)
         fp.close()
@@ -137,6 +143,13 @@ class ReSTed:
         return str(tpl)
     preview.exposed = True
 
+    def stylesheet(self):
+        fileName =os.path.join(ReSTed.config["baseDir"],'styles','mincom.css')
+        fp = open(fileName, 'r')
+        css = fp.read()
+        return css
+    stylesheet.exposed = True
+        
 def start(baseDir,webRoot):
     setup(baseDir, webRoot)
     port = 8000
@@ -155,9 +168,11 @@ def start(baseDir,webRoot):
         {
             'tools.staticdir.on':True,
             'tools.staticdir.dir':baseDir
-        }
+        },
     }
+    
     webbrowser.open_new("http://127.0.0.1:%s" % port)
     cherrypy.quickstart(ReSTed(),"/",webconfig)
     
+
     
