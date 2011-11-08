@@ -1,0 +1,3 @@
+#!/bin/sh
+INSTALL_DIR=/ssd/apps/ReSTed/
+python $INSTALL_DIR/src/rested.py $*
